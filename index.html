@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scofield Consulting — Digitalisation pour écoles, associations & institutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F1E6;
+    --paper-2:#EFE9DA;
+    --grid:rgba(61,90,128,0.14);
+    --ink:#1E2A38;
+    --ink-soft:#4A5568;
+    --stamp:#A63A2C;
+    --stamp-dark:#822D22;
+    --forest:#2F4A3A;
+    --ochre:#B9862E;
+    --line:#CFC7AE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Work Sans',sans-serif;font-size:16px;line-height:1.55;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important;}}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0;color:var(--ink);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--stamp);color:var(--paper);}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--stamp);outline-offset:3px;
+  }
+
+  header{position:sticky;top:0;z-index:50;background:rgba(245,241,230,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1120px;margin:0 auto;}
+  .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;letter-spacing:0.02em;}
+  .brand span{color:var(--stamp);}
+  nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0;}
+  nav a{text-decoration:none;font-size:0.86rem;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);border-bottom:1px solid transparent;padding-bottom:3px;transition:color .2s, border-color .2s;}
+  nav a:hover{color:var(--stamp);border-color:var(--stamp);}
+  .nav-cta{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.04em;background:var(--ink);color:var(--paper);padding:9px 16px;text-decoration:none;font-weight:600;display:none;}
+  @media(min-width:720px){.nav-cta{display:inline-block;}}
+  @media(max-width:719px){nav ul{display:none;}}
+
+  .hero{padding:88px 0 96px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:36px;align-items:start;}
+  @media(min-width:860px){.hero-grid{grid-template-columns:1.15fr 0.6fr;}}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stamp-dark);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--stamp-dark);display:inline-block;}
+  .hero h1{font-size:clamp(2.1rem, 5vw, 3.4rem);line-height:1.08;letter-spacing:-0.01em;max-width:18ch;}
+  .hero h1 em{font-style:italic;color:var(--stamp);}
+  .hero p.lead{margin-top:22px;font-size:1.08rem;color:var(--ink-soft);max-width:46ch;}
+  .cta-row{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;text-decoration:none;font-weight:600;font-size:0.92rem;border-radius:var(--radius);transition:transform .15s ease, box-shadow .15s ease;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--stamp);color:var(--paper);box-shadow:3px 3px 0 var(--ink);}
+  .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+  .btn-ghost{border:1px solid var(--ink);color:var(--ink);background:transparent;}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  .seal-wrap{display:flex;justify-content:center;padding-top:8px;}
+  .seal{width:190px;height:190px;position:relative;transform:rotate(-7deg);animation:seal-in .7s cubic-bezier(.2,.8,.3,1) both;}
+  @keyframes seal-in{from{opacity:0;transform:rotate(-7deg) scale(.85);} to{opacity:1;transform:rotate(-7deg) scale(1);}}
+  .seal svg{width:100%;height:100%;}
+  .seal-ring{fill:none;stroke:var(--stamp);stroke-width:1.6;}
+  .seal-ring-inner{fill:none;stroke:var(--stamp);stroke-width:1;opacity:.6;}
+  .seal-text{font-family:'IBM Plex Mono',monospace;font-size:8.6px;letter-spacing:2.5px;fill:var(--stamp);text-transform:uppercase;}
+  .seal-center{font-family:'Fraunces',serif;font-weight:700;font-size:19px;fill:var(--stamp);}
+  .seal-sub{font-family:'IBM Plex Mono',monospace;font-size:7px;fill:var(--stamp);letter-spacing:1px;}
+
+  section{padding:88px 0;}
+  .sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:52px;max-width:62ch;}
+  .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.3rem);}
+  .sec-head p{color:var(--ink-soft);font-size:1.02rem;}
+
+  .ledger{border-top:1px solid var(--ink);}
+  .ledger-row{display:grid;grid-template-columns:70px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line);position:relative;}
+  @media(min-width:760px){.ledger-row{grid-template-columns:90px 1fr 200px;}}
+  .ledger-code{font-family:'IBM Plex Mono',monospace;color:var(--stamp-dark);font-size:0.82rem;font-weight:600;padding-top:4px;}
+  .ledger-body h3{font-size:1.2rem;margin-bottom:8px;font-weight:600;}
+  .ledger-body p{color:var(--ink-soft);margin:0;max-width:56ch;}
+  .ledger-tag{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--forest);align-self:start;padding-top:6px;text-transform:uppercase;letter-spacing:0.05em;}
+  .ledger-row::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--stamp);transition:width .3s ease;}
+  .ledger-row:hover::after{width:100%;}
+
+  .contact-wrap{display:grid;grid-template-columns:1fr;gap:36px;}
+  @media(min-width:840px){.contact-wrap{grid-template-columns:0.85fr 1.15fr;}}
+  .contact-card{background:var(--ink);color:var(--paper);padding:34px 28px;}
+  .contact-card h3{color:var(--paper);font-size:1.3rem;margin-bottom:18px;}
+  .contact-card .line{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(245,241,230,0.15);font-size:0.92rem;}
+  .contact-card .line span.k{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ochre);text-transform:uppercase;min-width:90px;}
+  .contact-card .line a{text-decoration:underline;text-decoration-color:rgba(245,241,230,0.4);}
+  .contact-card .line a:hover{text-decoration-color:var(--paper);}
+  form{display:flex;flex-direction:column;gap:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);}
+  .field input, .field textarea{background:transparent;border:none;border-bottom:1px solid var(--ink);padding:10px 2px;font-family:'Work Sans',sans-serif;font-size:0.98rem;color:var(--ink);width:100%;}
+  .field input:focus, .field textarea:focus{outline:none;border-bottom:1px solid var(--stamp);}
+  .field textarea{resize:vertical;min-height:90px;}
+  form .btn{align-self:flex-start;margin-top:6px;}
+  .form-note{font-size:0.8rem;color:var(--ink-soft);margin-top:4px;}
+
+  footer{border-top:1px solid var(--ink);padding:34px 0;}
+  .foot-row{display:flex;flex-direction:column;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--ink-soft);}
+  @media(min-width:640px){.foot-row{flex-direction:row;justify-content:space-between;align-items:center;}}
+  .settings-link{background:none;border:1px solid var(--line);color:var(--ink-soft);padding:7px 14px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;}
+  .settings-link:hover{border-color:var(--stamp);color:var(--stamp-dark);}
+
+  /* ADMIN PANEL */
+  #admin-overlay{
+    display:none;position:fixed;inset:0;background:rgba(30,42,56,0.55);z-index:100;
+    padding:24px;overflow-y:auto;
+  }
+  #admin-overlay.open{display:block;}
+  .admin-panel{
+    background:var(--paper);max-width:760px;margin:20px auto 60px;
+    border:1px solid var(--ink);box-shadow:6px 6px 0 var(--stamp);
+  }
+  .admin-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line);background:var(--paper-2);}
+  .admin-head h2{font-size:1.3rem;}
+  .admin-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);line-height:1;}
+  .admin-body{padding:26px;display:flex;flex-direction:column;gap:28px;}
+  .admin-section{display:flex;flex-direction:column;gap:14px;}
+  .admin-section h3{font-size:1rem;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.05em;color:var(--stamp-dark);}
+  .admin-service{border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:10px;position:relative;background:var(--paper-2);}
+  .admin-service .remove-service{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--stamp);cursor:pointer;font-size:0.85rem;font-family:'IBM Plex Mono',monospace;}
+  .admin-actions{display:flex;gap:12px;flex-wrap:wrap;padding-top:6px;border-top:1px solid var(--line);}
+  .admin-status{font-size:0.82rem;color:var(--forest);font-family:'IBM Plex Mono',monospace;min-height:1.2em;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">SCOFIELD <span>CONSULTING</span></div>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#contact">Discuter d'un projet</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Taï · Cavally · Côte d'Ivoire</div>
+        <h1 id="hero-title">Vos registres et bulletins, <em>enfin fiables.</em></h1>
+        <p class="lead" id="hero-lead">Scofield Consulting conçoit des outils numériques sur mesure — gestion scolaire, suivi associatif, tableaux de bord — pour les écoles, associations et institutions du Cavally qui veulent remplacer le papier par un système qui tient ses comptes.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Discuter de votre projet</a>
+          <a class="btn btn-ghost" href="#services">Voir tout ce que nous pouvons faire</a>
+        </div>
+      </div>
+      <div class="seal-wrap">
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <circle class="seal-ring" cx="100" cy="100" r="92"/>
+            <circle class="seal-ring-inner" cx="100" cy="100" r="80"/>
+            <defs>
+              <path id="circletop" d="M 100,100 m -74,0 a 74,74 0 1,1 148,0"/>
+              <path id="circlebot" d="M 100,100 m -74,0 a 74,74 0 1,0 148,0"/>
+            </defs>
+            <text class="seal-text"><textPath href="#circletop" startOffset="50%" text-anchor="middle">Digitalisation · Formation</textPath></text>
+            <text class="seal-text"><textPath href="#circlebot" startOffset="50%" text-anchor="middle">Écoles · Associations · Institutions</textPath></text>
+            <text class="seal-center" x="100" y="96" text-anchor="middle">SCOFIELD</text>
+            <text class="seal-sub" x="100" y="112" text-anchor="middle">CONSULTING · TAÏ</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Grand livre des prestations</div>
+        <h2>Ce que Scofield Consulting met en place</h2>
+        <p>Des solutions pensées pour un besoin concret : remplacer le papier par des outils numériques fiables, dans les écoles, associations et institutions de Taï et du Cavally.</p>
+      </div>
+      <div class="ledger" id="services-ledger"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Bon pour accord</div>
+        <h2>Parlons de votre projet</h2>
+        <p>Décrivez votre besoin — gestion scolaire, suivi associatif, visuel d'événement — et Scofield Consulting revient vers vous avec une proposition claire.</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h3>Coordonnées</h3>
+          <div class="line"><span class="k">Lieu</span> Taï, Région du Cavally, Côte d'Ivoire</div>
+          <div class="line"><span class="k">Téléphone</span> <a id="contact-tel" href="tel:+2250767357019">07 67 35 70 19</a></div>
+          <div class="line"><span class="k">WhatsApp</span> <a id="contact-wa" href="https://wa.me/2250767357019" target="_blank" rel="noopener">07 67 35 70 19</a></div>
+          <div class="line"><span class="k">E-mail</span> <a id="contact-mail" href="mailto:teremonkeflorentin@gmail.com">teremonkeflorentin@gmail.com</a></div>
+          <div class="line"><span class="k">Réponse</span> sous 48h ouvrées</div>
+          <div class="line" style="border-bottom:none;">
+            <a class="btn btn-primary" id="wa-btn" style="box-shadow:none;padding:10px 16px;font-size:0.82rem;" href="https://wa.me/2250767357019" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+          </div>
+        </div>
+
+        <form onsubmit="handleContactSubmit(event)">
+          <div class="field">
+            <label for="name">Nom</label>
+            <input id="name" type="text" required placeholder="Votre nom">
+          </div>
+          <div class="field">
+            <label for="org">Structure</label>
+            <input id="org" type="text" placeholder="École, association, institution…">
+          </div>
+          <div class="field">
+            <label for="msg">Votre besoin</label>
+            <textarea id="msg" required placeholder="Décrivez votre projet en quelques lignes"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+          <p class="form-note" id="form-status">Le bouton ouvre votre application e-mail avec le message pré-rempli.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 SCOFIELD CONSULTING — TAÏ, CÔTE D'IVOIRE</span>
+    <button class="settings-link" onclick="openAdmin()">⚙ Gérer le site</button>
+  </div>
+</footer>
+
+<!-- ADMIN OVERLAY -->
+<div id="admin-overlay">
+  <div class="admin-panel">
+    <div class="admin-head">
+      <h2>Réglages du site</h2>
+      <button class="admin-close" onclick="closeAdmin()" aria-label="Fermer">×</button>
+    </div>
+    <div class="admin-body">
+
+      <div class="admin-section">
+        <h3>Accueil</h3>
+        <div class="field"><label for="a-hero-title">Titre principal</label><input id="a-hero-title"></div>
+        <div class="field"><label for="a-hero-lead">Sous-titre</label><textarea id="a-hero-lead"></textarea></div>
+      </div>
+
+      <div class="admin-section">
+        <h3>Services</h3>
+        <div id="a-services"></div>
+        <button class="btn btn-ghost" type="button" onclick="addService()">+ Ajouter un service</button>
+      </div>
+
+      <div class="admin-section">
+        <h3>Coordonnées</h3>
+        <div class="field"><label for="a-phone">Téléphone (avec indicatif, ex. +225...)</label><input id="a-phone"></div>
+        <div class="field"><label for="a-whatsapp">Numéro WhatsApp (avec indicatif, sans +, ex. 2250767357019)</label><input id="a-whatsapp"></div>
+        <div class="field"><label for="a-email">E-mail</label><input id="a-email"></div>
+      </div>
+
+      <div class="admin-actions">
+        <button class="btn btn-primary" onclick="saveSettings()">Enregistrer</button>
+        <button class="btn btn-ghost" onclick="resetSettings()">Réinitialiser aux valeurs par défaut</button>
+      </div>
+      <p class="admin-status" id="admin-status"></p>
+      <p class="form-note">Ces réglages sont sauvegardés pour vous dans Claude. Sur le site hébergé publiquement, les visiteurs verront la dernière version que vous m'aurez demandé de publier — dites-moi quand vous voulez que je fige une version pour la mise en ligne.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'scofield-site-settings';
+
+const defaultData = {
+  heroTitle: 'Vos registres et bulletins, <em>enfin fiables.</em>',
+  heroLead: "Scofield Consulting conçoit des outils numériques sur mesure — gestion scolaire, suivi associatif, tableaux de bord — pour les écoles, associations et institutions du Cavally qui veulent remplacer le papier par un système qui tient ses comptes.",
+  services: [
+    { title: 'Gestion & digitalisation', desc: "Outils numériques sur mesure pour la gestion de votre association, école (privée ou publique) ou entreprise — suivi des membres, des dossiers, des cotisations et des activités, pour remplacer les registres papier par un système fiable et centralisé.", tag: 'Gestion · Digitalisation' },
+    { title: 'Communication & supports visuels', desc: "Affiches, visuels d'événements et présence en ligne pour vos campagnes et annonces, pensés pour capter l'attention et rester cohérents avec votre image.", tag: 'Visuels · Réseaux' },
+    { title: 'Formation bureautique', desc: "Ateliers pratiques pour que votre équipe reprenne la main sur les outils livrés — Excel, gestion de fichiers, bonnes pratiques numériques.", tag: 'Ateliers' },
+    { title: 'Structuration de projets & financement', desc: "Mise en forme de dossiers, rapports et comptes-rendus pour vos démarches de financement et vos partenaires institutionnels.", tag: 'Dossiers' },
+    { title: 'Création de sites web', desc: "Conception et mise en ligne de sites web sur mesure — vitrine, présentation d'activité ou de structure — clairs, rapides et faciles à faire évoluer.", tag: 'Sites web' }
+  ],
+  phone: '+2250767357019',
+  phoneDisplay: '07 67 35 70 19',
+  whatsapp: '2250767357019',
+  email: 'teremonkeflorentin@gmail.com'
+};
+
+let data = JSON.parse(JSON.stringify(defaultData));
+
+async function loadData(){
+  try{
+    const result = await window.storage.get(STORAGE_KEY, false);
+    if(result && result.value){
+      data = JSON.parse(result.value);
+    }
+  }catch(e){
+    // no saved settings yet — use defaults
+  }
+  render();
+  renderAdminForm();
+}
+
+function render(){
+  document.getElementById('hero-title').innerHTML = data.heroTitle;
+  document.getElementById('hero-lead').textContent = data.heroLead;
+
+  const ledger = document.getElementById('services-ledger');
+  ledger.innerHTML = '';
+  data.services.forEach((s, i) => {
+    const num = String(i+1).padStart(2,'0');
+    const row = document.createElement('div');
+    row.className = 'ledger-row';
+    row.innerHTML = `
+      <div class="ledger-code">SVC — ${num}</div>
+      <div class="ledger-body"><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.desc)}</p></div>
+      <div class="ledger-tag">${escapeHtml(s.tag)}</div>
+    `;
+    ledger.appendChild(row);
+  });
+
+  document.getElementById('contact-tel').href = 'tel:' + data.phone;
+  document.getElementById('contact-tel').textContent = data.phoneDisplay;
+  document.getElementById('contact-wa').href = 'https://wa.me/' + data.whatsapp;
+  document.getElementById('contact-mail').href = 'mailto:' + data.email;
+  document.getElementById('contact-mail').textContent = data.email;
+  document.getElementById('wa-btn').href = 'https://wa.me/' + data.whatsapp;
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function renderAdminForm(){
+  document.getElementById('a-hero-title').value = data.heroTitle.replace(/<\/?em>/g,'');
+  document.getElementById('a-hero-lead').value = data.heroLead;
+  document.getElementById('a-phone').value = data.phone;
+  document.getElementById('a-whatsapp').value = data.whatsapp;
+  document.getElementById('a-email').value = data.email;
+
+  const svcWrap = document.getElementById('a-services');
+  svcWrap.innerHTML = '';
+  data.services.forEach((s, i) => svcWrap.appendChild(serviceField(s, i)));
+}
+
+function serviceField(s, i){
+  const div = document.createElement('div');
+  div.className = 'admin-service';
+  div.innerHTML = `
+    <button type="button" class="remove-service" onclick="removeService(${i})">Retirer</button>
+    <div class="field"><label>Titre</label><input value="${escapeHtml(s.title)}" data-svc="${i}" data-field="title"></div>
+    <div class="field"><label>Description</label><textarea data-svc="${i}" data-field="desc">${escapeHtml(s.desc)}</textarea></div>
+    <div class="field"><label>Étiquette</label><input value="${escapeHtml(s.tag)}" data-svc="${i}" data-field="tag"></div>
+  `;
+  return div;
+}
+
+function addService(){
+  data.services.push({ title: 'Nouveau service', desc: 'Description du service.', tag: 'Étiquette' });
+  renderAdminForm();
+}
+function removeService(i){
+  data.services.splice(i,1);
+  renderAdminForm();
+}
+
+function collectFormIntoData(){
+  data.heroTitle = document.getElementById('a-hero-title').value;
+  data.heroLead = document.getElementById('a-hero-lead').value;
+  data.phone = document.getElementById('a-phone').value;
+  data.whatsapp = document.getElementById('a-whatsapp').value;
+  data.email = document.getElementById('a-email').value;
+
+  document.querySelectorAll('[data-svc]').forEach(el => {
+    const i = el.getAttribute('data-svc');
+    const f = el.getAttribute('data-field');
+    data.services[i][f] = el.value;
+  });
+}
+
+async function saveSettings(){
+  collectFormIntoData();
+  const status = document.getElementById('admin-status');
+  try{
+    await window.storage.set(STORAGE_KEY, JSON.stringify(data), false);
+    status.textContent = 'Réglages enregistrés.';
+    render();
+  }catch(e){
+    status.textContent = "Échec de l'enregistrement — réessayez.";
+  }
+}
+
+async function resetSettings(){
+  data = JSON.parse(JSON.stringify(defaultData));
+  try{ await window.storage.set(STORAGE_KEY, JSON.stringify(data), false); }catch(e){}
+  render();
+  renderAdminForm();
+  document.getElementById('admin-status').textContent = 'Valeurs par défaut restaurées.';
+}
+
+function openAdmin(){ document.getElementById('admin-overlay').classList.add('open'); }
+function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
+
+function handleContactSubmit(event){
+  event.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const org = document.getElementById('org').value.trim();
+  const msg = document.getElementById('msg').value.trim();
+  const subject = encodeURIComponent('Demande de projet — ' + (org || name));
+  const body = encodeURIComponent('Nom : ' + name + '\nStructure : ' + (org || '—') + '\n\nBesoin :\n' + msg);
+  window.location.href = 'mailto:' + data.email + '?subject=' + subject + '&body=' + body;
+  document.getElementById('form-status').textContent = "Votre application e-mail devrait s'ouvrir avec le message pré-rempli.";
+}
+
+loadData();
+</script>
+
+</body>
+</html>
